@@ -20,6 +20,6 @@ $ go build
 ## Commands
 
 | Command         | Description            |
-|---------------:|:----------------------|
-| /retarded <sentence> | send a retarded string |
-|  /retardedPic <sentence> | send a retarded picture (pic + sentence) |
+|:---------------|:----------------------|
+| `/retarded <sentence>` | send a retarded string |
+| `/retardedPic <sentence>` | send a retarded picture (pic + sentence) |
