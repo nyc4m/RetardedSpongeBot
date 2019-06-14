@@ -1,0 +1,12 @@
+deploy: 
+    provider: elasticbeanstalk
+    access_key_id:
+        secure: $ACCESSKEY
+    secret_access_id:
+        secure: $SECRETKEY
+    region: "us-east-1"
+    app: "RetardedSpongeBot"
+    env: "Retardedspongebot-env"
+    bukket: "elasticbeanstalk-us-east-1-396818629473"
+    on:
+        branch: "master"
