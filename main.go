@@ -3,17 +3,17 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"github.com/GeertJohan/go.rice"
 	"github.com/nyc4m/retarded-bob-generator/image"
 	"gopkg.in/tucnak/telebot.v2"
 	"image/png"
-	"io/ioutil"
 	"os"
 	"time"
 )
 
 const (
-	bobImagePath = "./res/bob_source.png"
-	fontPath     = "./res/font/impact.ttf"
+	bobImagePath = "/bob_source.png"
+	fontPath     = "/font/impact.ttf"
 )
 
 var Token = os.Getenv("TOKEN")
@@ -23,9 +23,10 @@ func main() {
 		fmt.Println("no Token, exiting")
 		return
 	}
-	bobImageBytes, err := ioutil.ReadFile(bobImagePath)
+	box := rice.MustFindBox("./res")
+	bobImageBytes := box.MustBytes(bobImagePath)
 	bobImage, err := png.Decode(bytes.NewBuffer(bobImageBytes))
-	fontBytes, err := ioutil.ReadFile(fontPath)
+	fontBytes := box.MustBytes(fontPath)
 	font, err := image.LoadFontFromBytes(fontBytes, 30)
 	bot, err := telebot.NewBot(telebot.Settings{
 		Token:  Token,
