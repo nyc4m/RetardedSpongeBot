@@ -4,17 +4,20 @@
 
 Simple telegram bot that uses my other project [retarded bob generator](https://github.com/nyc4m/retarded-bob-generator).
 
-To make it run you need to have an api token from telegram, and store it in a environment variable such as 
 
-```bash
-$ TOKEN="YOURTOKENHERE"
-```
 
 ## Build
 
 ```bash
 $ go get -u //for dependencies
 $ go build
+```
+
+## Run
+To make it run you need to have an api token from telegram, and store it in a environment variable such as 
+
+```bash
+$ TOKEN="YOURTOKENHERE"
 ```
 
 ## Commands
