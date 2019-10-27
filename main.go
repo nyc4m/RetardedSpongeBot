@@ -40,7 +40,7 @@ func main() {
 
 	bot.Handle("/retarded", spongeBot.RetardedText)
 
-	bot.Handle("/retardedpic", spongeBot.RetardedPic)
+	bot.Handle(telebot.OnText, spongeBot.RetardedPic)
 
 	bot.Start()
 	fmt.Println("salut")

@@ -33,7 +33,7 @@ func (sponge *SpongeBot) RetardedText(m *telebot.Message) {
 //RetardedPic defines the handler to send
 //the retarded sponge bot meme
 func (sponge *SpongeBot) RetardedPic(m *telebot.Message) {
-	input := getInput(len("/retardedPic"), m.Text)
+	input := m.Text
 	retardedSentence := text.ToBobRetardedString(input)
 	retardedBobBytes := bobImage.GenerateBobMeme(sponge.sourceImg, sponge.font, retardedSentence)
 	photoToSend := telebot.Photo{
