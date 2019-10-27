@@ -1,18 +1,20 @@
 package main
 
 import (
+	"image"
+
 	bobImage "github.com/nyc4m/retarded-bob-generator/image"
 	"github.com/nyc4m/retarded-bob-generator/text"
 	"golang.org/x/image/font"
 	"gopkg.in/tucnak/telebot.v2"
-	"image"
 )
 
 //SpongeBot Defines the bot itself
 type SpongeBot struct {
-	sourceImg image.Image
-	font      font.Face
-	bot       *telebot.Bot
+	sourceImg   image.Image
+	thumbsUpBob image.Image
+	font        font.Face
+	bot         *telebot.Bot
 }
 
 //getInput returns the argument of the command.
@@ -41,4 +43,20 @@ func (sponge *SpongeBot) RetardedPic(m *telebot.Message) {
 	}
 	sponge.bot.Send(m.Sender, text.ToBobRetardedString("A few moments later..."))
 	go sponge.bot.Send(m.Sender, &photoToSend)
+}
+
+//Help returns a helpful message from the bot
+//in order for the user to use to bot
+func (sponge *SpongeBot) Help(m *telebot.Message) {
+	helpMessage := `
+	Hey ! if you need any help, that's how it works : 
+	- /retarded will convert a sentence to a retarded one : Hello world => HeLlO wOrLd
+	- if you type any text, it will generate the meme from sponge bob (image + retarded text)
+	`
+	photoToSend := telebot.Photo{
+		File: telebot.FromReader(bobImage.PngToBytes(sponge.thumbsUpBob)),
+	}
+	sponge.bot.Send(m.Sender, "Gotcha")
+	sponge.bot.Send(m.Sender, &photoToSend)
+	sponge.bot.Send(m.Sender, helpMessage)
 }
